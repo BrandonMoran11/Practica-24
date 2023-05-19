@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/assets/style.css" type="text/css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+
+
+<body>
+    <h1>Catálogo de personas</h1>
+    <form action="/find" method="POST" style="margin-bottom: 0px; margin-left: 530px;">
+        <label for="criterio">Criterio:</label>
+        <input type="text" id="criteria" name="criteria"><br><br>
+        <input type="submit" style="margin-bottom: 40px;" value="Buscar">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Tipo de Sangre</th>
+                <th>NSS</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% Object.keys(Persons).forEach(function(prop) { %>
+                <tr>
+                    <td>
+                        <%= Persons[prop].nombre %>
+                    </td>
+                    <td>
+                        <%= Persons[prop].edad %>
+                    </td>
+                    <td>
+                        <%= Persons[prop].tipoSangre %>
+                    </td>
+                    <td>
+                        <%= Persons[prop].nss %>
+                    </td>
+                    <td>
+                        <a href="<%= `findById/${Persons[prop]._id}` %>">Editar</a>
+
+                    </td>
+                    <td>
+                        <a href="<%= `deletePerson/${Persons[prop]._id}` %>">Eliminar</a>
+
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+    <a href="./addPerson">Agregar</a>
+</body>
+
+</html>
